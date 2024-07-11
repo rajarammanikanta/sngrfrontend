@@ -1,31 +1,91 @@
-
-*{
-    margin: 0px;
-}
-
-.home-container{
-
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-   width: 100% !important;
-   padding: 20px;
-} 
-
-.slide-show-container{
-   
- 
- margin-top: 80px;
-
-
-
-
-} 
-
-.sofa-home-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+/* Basic resets */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .home-container {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 20px;
+  }
+  
+  .sofa-home-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sofa-home-container h2 {
+    text-align: center;
+    color: #0056b3;
+    margin-bottom: 20px;
+  }
+  
+  .sofa-photos-container {
+    margin-top: 20px;
+  }
+  
+  .sofa-card {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .sofa-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sofa-image {
+    max-height: 200px;
+    object-fit: cover;
+  }
+  
+  .sofa-card .card-body {
+    text-align: center;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .home-container {
+      padding: 15px;
+    }
+  
+    .sofa-home-container {
+      padding: 15px;
+    }
+  
+    .sofa-card .card-body {
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .home-container {
+      padding: 10px;
+    }
+  
+    .sofa-home-container {
+      padding: 10px;
+    }
+  
+    .sofa-card .card-body {
+      padding: 8px;
+    }
+  
+    .sofa-home-container h2 {
+      font-size: 24px;
+    }
+  }
+  

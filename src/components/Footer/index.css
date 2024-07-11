@@ -1,0 +1,118 @@
+/* src/components/index.css */
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .footer-contact,
+  .footer-brand,
+  .footer-services {
+    margin: 20px 0;
+  }
+  
+  .footer h4 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: white; /* Golden yellow */
+  }
+  
+  .footer h5 {
+    font-size: 1.2em;
+    margin: 5px 0;
+    color: white; /* Golden yellow */
+  }
+  
+  .footer p {
+    font-size: 1em;
+    margin: 5px 0;
+    line-height: 1.5;
+    color: white; /* Light gray */
+  }
+  
+  .footer-contact p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white; /* Bright yellow */
+  }
+  
+  .footer-services p {
+    font-size: 1em;
+    color: white; /* Light gray */
+  }
+  
+  .footer-services .customized {
+    font-size: 1.3em;
+    color: white; /* Bright yellow */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-brand {
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer-logo {
+    margin-right: 10px;
+    width: 40px;
+    height: 50px;
+  }
+  
+  /* Responsive design */
+  @media (min-width: 768px) {
+    .footer-container {
+      flex-direction: row;
+    }
+  
+    .footer-contact,
+    .footer-services {
+      flex: 1;
+      margin: 0 20px;
+      text-align: left;
+    }
+  
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: flex-start;
+    }
+  
+    .footer-brand h4 {
+      margin: 0 10px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .footer-contact,
+    .footer-brand,
+    .footer-services {
+      text-align: center;
+    }
+  
+    .footer-brand {
+      flex-direction: column;
+    }
+  
+    .footer-logo {
+      margin: 10px 0;
+    }
+  }
+  
