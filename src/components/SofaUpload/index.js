@@ -1,4 +1,4 @@
-import React, { Component } from "react"; 
+import React, { Component } from "react";
 import AdminNavbar from "../AdminNavbar";
 import axios from 'axios';
 import './index.css';
@@ -81,7 +81,7 @@ class SofaUpload extends Component {
 
           {sofaDetails && (
             <div className="sofa-details">
-              <h2>Home</h2>
+              <h2>Sofa Preview</h2>
               <p><strong>Name:</strong> {sofaDetails.name}</p>
               <p><strong>Model:</strong> {sofaDetails.model}</p>
               <img src={sofaDetails.image} alt="Sofa" className="sofa-image"/>
