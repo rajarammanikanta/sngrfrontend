@@ -44,12 +44,12 @@
 .login-heading{
     color: #FF7F3E;
     font-weight: bold;
-    font-family :cursive;
+   
     font-size: 25px;
 } 
 
 .login-label{
-    font-family: cursive;
+ 
     font-weight: bold;
     margin: 5px;
     color:#0C1844;
