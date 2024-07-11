@@ -1,0 +1,52 @@
+/* index.css */
+
+/* Basic resets */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  /* Navbar logo styling */
+  .logo {
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  /* Nav buttons alignment */
+  .nav-buttons {
+    margin-left: auto;
+  }
+  
+  .nav-buttons .nav-link {
+    margin-right: 10px;
+  }
+  
+  .nav-buttons .btn {
+    margin-right: 10px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 767.98px) {
+    .nav-buttons .nav-link {
+      margin-bottom: 10px;
+    }
+  
+    .nav-buttons .btn {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .logo {
+      height: 30px;
+    }
+  }
+  

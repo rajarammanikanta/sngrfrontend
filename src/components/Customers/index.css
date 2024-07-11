@@ -1,0 +1,142 @@
+/* Basic resets */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .customer-list {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for the entire customer list */
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    color: #0056b3;
+  }
+  
+  .search-input,
+  .date-input {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .date-filters {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .customer {
+    padding: 15px;
+    margin-bottom: 15px; /* Spacing between customer boxes */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for each customer box */
+  }
+  
+  .customer-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Adjust alignment as needed */
+  }
+  
+  .customer-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .customer-info p {
+    margin-bottom: 10px;
+  }
+  
+  .customer-info strong {
+    color: #0056b3;
+  }
+  
+  .customer-additional-details {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+  }
+  
+  .customer-actions {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .customer-actions button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #0056b3;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .customer-actions button:hover {
+    background-color: #004494;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .customer-info {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  
+    .customer-info p {
+      flex: 1 1 50%; /* Two columns on smaller screens */
+      margin-bottom: 10px;
+    }
+  
+    .date-filters {
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .customer-list {
+      padding: 10px;
+    }
+  
+    h2 {
+      font-size: 24px;
+    }
+  
+    .search-input,
+    .date-input {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .customer-actions button {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  }
+  
+  .no-customers-message {
+    text-align: center;
+    margin-top: 20px; /* Adjust margin as needed */
+    font-size: 1.2em; /* Adjust font size as needed */
+    color: #888; /* Example color */
+  }
+  
