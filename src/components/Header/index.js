@@ -12,11 +12,7 @@ class Header extends Component {
         <Navbar bg="dark" variant="dark" fixed="top">
           <Container>
             <Navbar.Brand href="#home"><img src="./sngr.jpg" className="logo" alt="logo"/>SNGR SOFA WORLD</Navbar.Brand>
-            <Nav className="ml-auto">
-              <Nav.Link href="/admin">
-                <Button variant="outline-light">Admin</Button>
-              </Nav.Link>
-            </Nav>
+           
           </Container>
         </Navbar>
       </>
