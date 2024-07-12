@@ -90,3 +90,16 @@
     }
   }
   
+
+  .loading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   margin-top: 10px;
+   color: #E4003A;
+   font-weight: bold;
+   font-size: 18px;
+   font-family: "roboto";
+
+  } 
