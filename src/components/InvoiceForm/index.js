@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import AdminNavbar from '../AdminNavbar';
 import axios from 'axios';
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
 import './index.css';
 
 class InvoiceForm extends Component {
@@ -21,6 +19,7 @@ class InvoiceForm extends Component {
     sofaSeatingCharge: '',
     fabricCharge: '',
     totalEstimationBill: '',
+    showPopup: false,
   };
 
   async componentDidMount() {
@@ -58,84 +57,6 @@ class InvoiceForm extends Component {
     });
   };
 
-  generatePDF = () => {
-    const {
-      page,
-      invoiceDate,
-      orderDeliveryDate,
-      customerName,
-      village,
-      mobileNumber,
-      sofaModel,
-      seaterType,
-      softySeatingCharge,
-      hrFoamSeatingCharge,
-      coirFoamSeatingCharge,
-      sofaSeatingCharge,
-      fabricCharge,
-      totalEstimationBill,
-    } = this.state;
-  
-    try {
-      // Create a new jsPDF instance
-      const doc = new jsPDF();
-  
-      // Calculate text width for centering
-      const textWidth = doc.getStringUnitWidth('SNGR SOFA WORLD') * doc.internal.getFontSize() / doc.internal.scaleFactor;
-      const startX = (doc.internal.pageSize.width - textWidth) / 2;
-  
-      // Add centered heading
-      doc.setFontSize(18);
-      doc.text('SNGR SOFA WORLD', startX, 20);
-  
-      // Add dotted horizontal line
-      doc.setLineWidth(0.5);
-      doc.setDrawColor(128, 128, 128); // Dotted line color
-      doc.line(20, 25, doc.internal.pageSize.width - 20, 25, 'Dotted'); // Dotted line
-  
-      // Set position for content
-      let startY = 40;
-  
-      // Add content to PDF in table format
-      doc.autoTable({
-        startY,
-        head: [['Field', 'Value']],
-        body: [
-          ['Page No', page],
-          ['Invoice Date', invoiceDate],
-          ['Order Delivery Date', orderDeliveryDate],
-          ['Customer Name', customerName],
-          ['Address', village],
-          ['Mobile Number', mobileNumber],
-          ['Sofa Model', sofaModel],
-          ['Type of Seater', seaterType],
-          ['Softy Seating Charge', softySeatingCharge],
-          ['HR-Foam Seating Charge', hrFoamSeatingCharge],
-          ['Coir Foam Seating Charge', coirFoamSeatingCharge],
-          ['Sofa Seating Charge', sofaSeatingCharge],
-          ['Fabric Charge', fabricCharge],
-          ['Total Estimation Bill', totalEstimationBill],
-        ],
-        theme: 'grid', // Ensure this matches your intended design
-        styles: {
-          lineColor: [0, 0, 0], // Table border color
-          lineWidth: 0.1, // Table border width
-          fontStyle: 'normal', // Font style ('normal', 'bold', 'italic', 'bolditalic')
-          overflow: 'linebreak', // Overflow behavior ('linebreak', 'ellipsize', 'visible', 'hidden')
-          fontSize: 12,
-        },
-        margin: { top: 10 },
-      });
-  
-      // Save the PDF with customer name as the filename
-      const fileName = `${customerName.replace(/\s+/g, '-')}_Invoice.pdf`;
-      doc.save(fileName);
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-    }
-  };
-  
-  
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -159,9 +80,11 @@ class InvoiceForm extends Component {
       const response = await axios.post('https://sngrbackend.onrender.com/api/invoices', formData);
       console.log('Invoice submitted:', response.data);
 
-      // Increment the page number after successful submission
+      // Show popup with total estimation bill
+      this.setState({ showPopup: true });
+
+      // Reset form fields
       const updatedPage = this.state.page + 1;
-      this.generatePDF();
       this.setState({
         page: updatedPage,
         invoiceDate: '',
@@ -172,22 +95,24 @@ class InvoiceForm extends Component {
         sofaModel: '',
         seaterType: '', // Reset seater type
         fabricCharge: '',
-        totalEstimationBill: '',
+
         sofaSeatingCharge:'',
         hrFoamSeatingCharge:'',
         coirFoamSeatingCharge:'',
-        
       });
-
-      // Generate and download PDF
-   
 
     } catch (error) {
       console.error('Error submitting invoice:', error);
     }
   };
 
+  closePopup = () => {
+    this.setState({ showPopup: false ,  totalEstimationBill: '',});
+  };
+
   render() {
+    const { showPopup, totalEstimationBill } = this.state;
+
     return (
       <>
         <AdminNavbar />
@@ -343,6 +268,24 @@ class InvoiceForm extends Component {
             </div>
           </form>
         </div>
+
+        {/* Popup for showing total estimated bill */}
+        {showPopup && (
+          <div className="popup-background">
+            <div className="popup">
+              <div className="popup-content">
+                <span className="close-popup" onClick={this.closePopup}>&times;</span>
+                <h3>Invoice Generated Successfully!</h3>
+                <p>Total Estimated Bill: ₹{totalEstimationBill}</p>
+                <div className="popup-buttons">
+                  <a href="/customers">    <button className="popup-button" href="/customers">Go to Customers Page</button></a>
+              
+                  <button className="popup-button" onClick={this.closePopup}>Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </>
     );
   }
