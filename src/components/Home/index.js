@@ -10,12 +10,14 @@ import Header from '../Header';
 import {TailSpin} from "react-loader-spinner";
 import Footer from '../Footer';
 
+
 const Home = () => {
   useAuthRedirect();
    const[loading,setLoading]=useState(false);
   const [sofas, setSofas] = useState([]);
 
   useEffect(() => {
+    document.title = 'SNGR SOFA WORLD';
     setLoading(true)
     axios.get('https://sngrbackend.onrender.com/api/sofas')
       .then(response => {
@@ -67,7 +69,7 @@ const Home = () => {
 
   return (
     <>
-      <Header/>
+    <Header/>
       <div className='home-container'>
         <div className='sofa-home-container'>
           <h2>Sofa Sets</h2>
