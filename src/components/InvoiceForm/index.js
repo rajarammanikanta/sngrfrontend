@@ -25,7 +25,7 @@ class InvoiceForm extends Component {
 
   async componentDidMount() {
     try {
-      const response = await axios.get('http://localhost:5000/api/invoices/latest-page');
+      const response = await axios.get('https://sngrbackend.onrender.com/api/invoices/latest-page');
       const latestPageNumber = response.data.page || 0; // If no page number is found, start from 0
       this.setState({ page: latestPageNumber + 1 });
     } catch (error) {
@@ -156,7 +156,7 @@ class InvoiceForm extends Component {
         invoiceTime: currentTime, // Add current time to form data
       };
 
-      const response = await axios.post('http://localhost:5000/api/invoices', formData);
+      const response = await axios.post('https://sngrbackend.onrender.com/api/invoices', formData);
       console.log('Invoice submitted:', response.data);
 
       // Increment the page number after successful submission
