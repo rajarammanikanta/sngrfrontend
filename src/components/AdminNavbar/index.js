@@ -17,7 +17,7 @@ class AdminNavbar extends Component {
       <div>
         <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
           <Container>
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/admin">
               <img src="./sngr.jpg" className="logo" alt="logo" />
               SNGR SOFA WORLD
             </Navbar.Brand>

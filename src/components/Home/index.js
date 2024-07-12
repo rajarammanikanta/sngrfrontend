@@ -7,16 +7,19 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import './index.css';
 import Header from '../Header';
+import {TailSpin} from "react-loader-spinner";
 import Footer from '../Footer';
 
 const Home = () => {
   useAuthRedirect();
-
+   const[loading,setLoading]=useState(false);
   const [sofas, setSofas] = useState([]);
 
   useEffect(() => {
+    setLoading(true)
     axios.get('https://sngrbackend.onrender.com/api/sofas')
       .then(response => {
+        setLoading(false)
         setSofas(response.data);
       })
       .catch(error => {
@@ -32,15 +35,32 @@ const Home = () => {
             <Card className="sofa-card">
               <Card.Img variant="top" src={eachSofa.image} className="sofa-image"/>
               <Card.Body>
-                <Card.Title>{eachSofa.name}</Card.Title>
-                <Card.Text>{eachSofa.model}</Card.Text>
+                <Card.Title>Sofa Name: {eachSofa.name}</Card.Title>
+                <Card.Text>Seater Type: {eachSofa.model}</Card.Text>
               </Card.Body>
             </Card>
           </Col>
         ))}
       </Row>
     </div>
-  );
+  ); 
+
+  const renderLoadingView=()=>(
+<TailSpin
+  visible={true}
+  height="80"
+  width="80"
+  color="#4fa94d"
+  ariaLabel="tail-spin-loading"
+  radius="1"
+  wrapperStyle={{}}
+  wrapperClass=""
+  />
+  )
+
+  const renderAllviews=()=>(
+     loading === true ? renderLoadingView(): renderSofaPhotos()
+  )
 
   return (
     <>
@@ -48,7 +68,7 @@ const Home = () => {
       <div className='home-container'>
         <div className='sofa-home-container'>
           <h2>Sofa Sets</h2>
-          {renderSofaPhotos()}
+        {renderAllviews()}
         </div>
       </div>
       <Footer />

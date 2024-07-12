@@ -27,7 +27,7 @@ class SofaUpload extends Component {
       image: sofaImage
     })
     .then(response => {
-      this.setState({ sofaDetails: response.data });
+      this.setState({ sofaDetails: response.data,sofaName:'',sofaModel:'',sofaImage:'' });
     })
     .catch(error => {
       console.error("There was an error saving the sofa details!", error);

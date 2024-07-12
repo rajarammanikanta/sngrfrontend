@@ -3,6 +3,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: "roboto";
   }
   
   body {
@@ -65,7 +66,7 @@
   }
   
   .customer-info strong {
-    color: #0056b3;
+    color: #E4003A;
   }
   
   .customer-additional-details {
@@ -90,9 +91,10 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
+
   
   .customer-actions button:hover {
-    background-color: #004494;
+    background-color:#E4003A;
   }
   
   /* Responsive design */
@@ -138,5 +140,56 @@
     margin-top: 20px; /* Adjust margin as needed */
     font-size: 1.2em; /* Adjust font size as needed */
     color: #888; /* Example color */
+  }
+   
+
+  .loading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   margin-top: 10px;
+   color: #E4003A;
+   font-weight: bold;
+   font-size: 18px;
+   font-family: "roboto";
+
+  } 
+
+  .customer-list-heading{
+    color:#E4003A;
+    font-family: "roboto";
+    font-weight: bold;
+  } 
+
+  /* .footer{
+    background-color: #333;
+    color: white;  
+    position: fixed;
+    height: 10px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } 
+ */
+
+  .details{
+    color: #050C9C;
+
+    font-size: 18px;
+    font-weight: 400;
+  }
+  
+
+  .name{
+    color:#050C9C;
+
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  
+  .customer-additional-details strong {
+    color: #E4003A;
   }
   

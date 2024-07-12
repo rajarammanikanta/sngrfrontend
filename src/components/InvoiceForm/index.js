@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AdminNavbar from '../AdminNavbar';
 import axios from 'axios';
+import {toast} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 import './index.css';
 
 class InvoiceForm extends Component {
@@ -44,8 +46,10 @@ class InvoiceForm extends Component {
         invoiceTime: currentTime, // Add current time to form data
       };
 
-      const response = await axios.post('http://localhost:5000/api/invoices', formData);
-      console.log('Invoice submitted:', response.data);
+      const response = await axios.post('https://sngrbackend.onrender.com/api/invoices', formData);
+      console.log('Invoice submitted:', response.data); 
+    
+
 
       // Reset form fields after successful submission
       this.setState({
@@ -62,6 +66,9 @@ class InvoiceForm extends Component {
         sofaSeatingCharge: '',
         fabricCharge: '',
         totalEstimationBill: '',
+      });
+      toast.success("Successfully added customers details", {
+        position: toast.POSITION.TOP_CENTER,
       });
     } catch (error) {
       console.error('Error submitting invoice:', error);

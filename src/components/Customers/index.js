@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import AdminNavbar from '../AdminNavbar';
 import './index.css'; // Import your CSS file
+import {TailSpin} from "react-loader-spinner";
 
 class Customers extends Component {
   state = {
@@ -9,17 +10,21 @@ class Customers extends Component {
     selectedCustomer: null, // To track which customer's details are expanded
     searchQuery: '', // To track the search query
     startDate: '', // To track the start date for filtering
-    endDate: '' // To track the end date for filtering
+    endDate: '',
+    loading: false // To track the end date for filtering
   };
+
+
 
   componentDidMount() {
     this.fetchCustomers();
   }
 
   fetchCustomers = async () => {
+    this.setState({loading: true})
     try {
       const response = await axios.get('https://sngrbackend.onrender.com/api/invoices');
-      this.setState({ customers: response.data });
+      this.setState({ customers: response.data ,loading: false});
     } catch (error) {
       console.error('Error fetching customers:', error);
     }
@@ -66,8 +71,35 @@ class Customers extends Component {
     });
   };
 
+ 
+   
+   renderLoadingView=()=>(
+    <div className='loading'>
+   <TailSpin
+      visible={true}
+      height="80"
+      width="80"
+      color="#E4003A"
+      ariaLabel="tail-spin-loading"
+      radius="1"
+      wrapperStyle={{}}
+      wrapperClass=""
+      />
+      <p className='loading'>Sngr sofa world......</p>
+    </div>
+  
+      )
+
+
+      renderFooter=()=>(
+        <div className='footer'>
+          <p>Designed & Developed by @Rajaram Manikanta</p>
+        </div>
+      )
+
+
   render() {
-    const { customers, selectedCustomer, searchQuery, startDate, endDate } = this.state;
+    const { customers, selectedCustomer, searchQuery, startDate, endDate ,loading} = this.state;
     let filteredCustomers = customers.filter(customer =>
       customer.customerName.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -76,8 +108,10 @@ class Customers extends Component {
     return (
       <>
         <AdminNavbar />
+
+
         <div className="customer-list">
-          <h2>Customer List</h2>
+          <h2 className='customer-list-heading'>Customer's List</h2>
           <input
             type="text"
             placeholder="Search by customer name"
@@ -101,17 +135,20 @@ class Customers extends Component {
               placeholder="End Date"
             />
           </div>
-          {filteredCustomers.length === 0 ? (
+
+       {loading === true ? this.renderLoadingView(): (
+           filteredCustomers.length === 0 ? (
             <p className="no-customers-message">No customers found matching the criteria.</p>
           ) : (
             filteredCustomers.map(customer => (
               <div key={customer._id} className="customer">
                 <div className="customer-details">
                   <div className="customer-info">
-                    <p><strong>CustomerName:</strong> {customer.customerName}</p>
-                    <p><strong>Mobile:</strong> {customer.mobileNumber}</p>
-                    <p><strong>Address:</strong> {customer.village}</p>
-                    <p><strong>Invoice Date:</strong> {this.formatDate(customer.invoiceDate)}</p>
+                    <p className='name'><strong>CustomerName:</strong> {customer.customerName}</p>
+                    <p className='name'><strong>Mobile:</strong> {customer.mobileNumber}</p>
+                    <p className='name'><strong>Sofa Model:</strong> {customer.sofaModel}</p>
+              
+                    <p className='name'><strong>Invoice Date:</strong> {this.formatDate(customer.invoiceDate)}</p>
                   </div>
                   <div className="customer-actions">
                     <button onClick={() => this.toggleCustomerDetails(customer._id)}>
@@ -122,20 +159,26 @@ class Customers extends Component {
                 {/* Conditionally render additional details */}
                 {selectedCustomer === customer._id && (
                   <div className="customer-additional-details">
-                    <p><strong>Order Delivery Date:</strong> {this.formatDate(customer.orderDeliveryDate)}</p>
-                    <p><strong>Sofa Model:</strong> {customer.sofaModel}</p>
-                    <p><strong>Softy Seating Charge:</strong> {customer.softySeatingCharge}</p>
-                    <p><strong>HR-Foam Seating Charge:</strong> {customer.hrFoamSeatingCharge}</p>
-                    <p><strong>Coir Foam Seating Charge:</strong> {customer.coirFoamSeatingCharge}</p>
-                    <p><strong>Sofa Seating Charge:</strong> {customer.sofaSeatingCharge}</p>
-                    <p><strong>Fabric Charge:</strong> {customer.fabricCharge}</p>
-                    <p><strong>Total Estimation Bill:</strong> {customer.totalEstimationBill}</p>
+                    <p className="details"><strong>Order Delivery Date:</strong> {this.formatDate(customer.orderDeliveryDate)}</p>
+                    <p className="details"><strong>Address:</strong> {customer.village}</p>
+                    <p className="details"><strong>Softy Seating Charge:</strong> {customer.softySeatingCharge}</p>
+                    <p className="details"><strong>HR-Foam Seating Charge:</strong> {customer.hrFoamSeatingCharge}</p>
+                    <p className="details"><strong>Coir Foam Seating Charge:</strong> {customer.coirFoamSeatingCharge}</p>
+                    <p className="details"><strong>Sofa Seating Charge:</strong> {customer.sofaSeatingCharge}</p>
+                    <p className="details"><strong>Fabric Charge:</strong> {customer.fabricCharge}</p>
+                    <p className="details"><strong>Total Estimation Bill:</strong> {customer.totalEstimationBill}</p>
                   </div>
                 )}
               </div>
             ))
-          )}
+          )
+       )
+    
+       }
+
+       
         </div>
+        {/* {this.renderFooter()} */}
       </>
     );
   }

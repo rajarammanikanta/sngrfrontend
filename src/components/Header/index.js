@@ -9,10 +9,10 @@ class Header extends Component {
   render() {
     return (
       <>
-        <Navbar bg="dark" variant="dark" fixed="top">
-          <Container>
+        <Navbar bg="dark" variant="dark" fixed="top" className="navbar-container">
+          <Container className="navbar-container">
             <Navbar.Brand href="#home"><img src="./sngr.jpg" className="logo" alt="logo"/>SNGR SOFA WORLD</Navbar.Brand>
-           
+  
           </Container>
         </Navbar>
       </>
