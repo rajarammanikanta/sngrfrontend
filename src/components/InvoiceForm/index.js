@@ -173,6 +173,10 @@ class InvoiceForm extends Component {
         seaterType: '', // Reset seater type
         fabricCharge: '',
         totalEstimationBill: '',
+        sofaSeatingCharge:'',
+        hrFoamSeatingCharge:'',
+        coirFoamSeatingCharge:'',
+        
       });
 
       // Generate and download PDF
