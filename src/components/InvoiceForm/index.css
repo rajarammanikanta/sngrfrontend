@@ -6,6 +6,11 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+
+  .invoice-form-container h2{
+    text-align: center;
+  }
+
   
   .invoice-form {
     display: grid;
@@ -27,6 +32,11 @@
     border-radius: 4px;
   }
   
+  .button-container {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+  }
+  
   .invoice-form button[type="submit"] {
     background-color: #007bff;
     color: white;
@@ -43,6 +53,10 @@
   @media screen and (min-width: 768px) {
     .invoice-form {
       grid-template-columns: 1fr 1fr;
+    }
+  
+    .button-container {
+      grid-column: span 2; /* Make the button span across both columns */
     }
   }
   
