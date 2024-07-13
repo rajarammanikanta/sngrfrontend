@@ -83,8 +83,12 @@ class InvoiceForm extends Component {
       // Show popup with total estimation bill
       this.setState({ showPopup: true });
 
-      // Reset form fields
-      const updatedPage = this.state.page + 1;
+      // Get the latest page number from the API and update the state
+      const pageResponse = await axios.get('https://sngrbackend.onrender.com/api/invoices/latest-page');
+      const latestPageNumber = pageResponse.data.page || 0;
+      const updatedPage = latestPageNumber + 1;
+
+      // Reset form fields and update the page number
       this.setState({
         page: updatedPage,
         invoiceDate: '',
@@ -95,7 +99,7 @@ class InvoiceForm extends Component {
         sofaModel: '',
         seaterType: '', // Reset seater type
         fabricCharge: '',
-
+        totalEstimationBill: '',
         sofaSeatingCharge:'',
         hrFoamSeatingCharge:'',
         coirFoamSeatingCharge:'',
@@ -107,7 +111,7 @@ class InvoiceForm extends Component {
   };
 
   closePopup = () => {
-    this.setState({ showPopup: false ,  totalEstimationBill: '',});
+    this.setState({ showPopup: false });
   };
 
   render() {
@@ -276,10 +280,9 @@ class InvoiceForm extends Component {
               <div className="popup-content">
                 <span className="close-popup" onClick={this.closePopup}>&times;</span>
                 <h3>Invoice Generated Successfully!</h3>
-                <p>Total Estimated Bill: ₹{totalEstimationBill}</p>
+                <p>Total Estimated Bill: ${totalEstimationBill}</p>
                 <div className="popup-buttons">
-                  <a href="/customers">    <button className="popup-button" href="/customers">Go to Customers Page</button></a>
-              
+                  <button className="popup-button" onClick={() => alert('Navigate to customers page')}>Go to Customers Page</button>
                   <button className="popup-button" onClick={this.closePopup}>Close</button>
                 </div>
               </div>
