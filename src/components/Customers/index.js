@@ -161,6 +161,7 @@ class Customers extends Component {
                   <div className="customer-additional-details">
                     <p className="details"><strong>Order Delivery Date:</strong> {this.formatDate(customer.orderDeliveryDate)}</p>
                     <p className="details"><strong>Address:</strong> {customer.village}</p>
+                    <p className="details"><strong>Type of Seater:</strong> {customer.seaterType} Seater</p>
                     <p className="details"><strong>Softy Seating Charge:</strong> {customer.softySeatingCharge}</p>
                     <p className="details"><strong>HR-Foam Seating Charge:</strong> {customer.hrFoamSeatingCharge}</p>
                     <p className="details"><strong>Coir Foam Seating Charge:</strong> {customer.coirFoamSeatingCharge}</p>

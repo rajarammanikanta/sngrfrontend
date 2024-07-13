@@ -5,7 +5,7 @@ import './index.css';
 
 class InvoiceForm extends Component {
   state = {
-    page: 1,
+    page: 0,
     invoiceDate: '',
     orderDeliveryDate: '',
     customerName: '',
